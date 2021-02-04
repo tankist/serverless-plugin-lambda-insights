@@ -1,0 +1,30 @@
+{
+  "name": "serverless-plugin-lambda-insights",
+  "version": "0.0.1",
+  "description": "A Serverless Framework Plugin allowing to enable Lambda Insights for entire Serverless stack or individual functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cstanger/serverless-plugin-lambda-insights.git"
+  },
+  "keywords": [
+    "serverless",
+    "aws",
+    "Serverless Plugin",
+    "Lambda Insights",
+    "Metric"
+  ],
+  "author": "Stanger Christoph",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cstanger/serverless-plugin-lambda-insights/issues"
+  },
+  "homepage": "https://github.com/cstanger/serverless-plugin-lambda-insights#readme",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
