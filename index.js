@@ -10,14 +10,13 @@ const layerVersion = 14;
  */
 class AddLambdaInsights {
   /**
-   * constructor description
-   * @param  {object} serverless [description]
-   * @param  {object} options [description]
+   * AddLambdaInsights constructor
+   * This class gets instantiated with a serverless object and a bunch of options.
+   * @param  {object} serverless The serverless instance which enables access to global service config during
    */
-  constructor(serverless, options) {
+  constructor(serverless) {
     this.serverless = serverless;
     this.service = this.serverless.service;
-    this.options = options;
     this.provider = this.serverless.getProvider('aws');
 
     this.hooks = {
@@ -34,9 +33,7 @@ class AddLambdaInsights {
     if (typeof value === 'boolean') {
       return value;
     } else {
-      throw new Error(
-          `lambdaInsights value must be set to either true or false`,
-      );
+      throw new Error(`lambdaInsights value must be set to either true or false`);
     }
   };
 
