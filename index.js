@@ -1,42 +1,51 @@
-"use strict";
+'use strict';
 
-//Lambda Insight Layer Version
-//see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html
+// Lambda Insight Layer Version
+// see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html
 const layerVersion = 14;
 
 /**
- * module description
- * @module AddLambdaInsights
+ * Serverless Lambda Insights Plugin - serverless-plugin-lambda-insights
+ * @class AddLambdaInsights
  */
 class AddLambdaInsights {
   /**
    * constructor description
    * @param  {object} serverless [description]
-   * @param  {[object]} options [description]
+   * @param  {object} options [description]
    */
   constructor(serverless, options) {
     this.serverless = serverless;
     this.service = this.serverless.service;
     this.options = options;
-    this.provider = this.serverless.getProvider("aws");
+    this.provider = this.serverless.getProvider('aws');
 
     this.hooks = {
-      "package:createDeploymentArtifacts": this.addLambdaInsights,
+      'package:createDeploymentArtifacts': this.addLambdaInsights.bind(this),
     };
   }
 
-  checkLambdaInsightsType = (value) => {
-    if (typeof value === "boolean") {
+  /**
+   * Check if Lambda Insights parameter is type of Boolean
+   * @param  {any} value Value to check
+   * @return {boolean} return input value if boolean
+   */
+  checkLambdaInsightsType(value) {
+    if (typeof value === 'boolean') {
       return value;
     } else {
       throw new Error(
-        `lambdaInsights value must be set to either true or false`
+          `lambdaInsights value must be set to either true or false`,
       );
     }
   };
 
-  addLambdaInsightsToFunctions = (globalLambdaInsights) => {
-    if (typeof this.service.functions !== "object") {
+  /**
+   * Attach Lambda Layer conditionally to each function
+   * @param  {boolean} globalLambdaInsights global settings
+   */
+  addLambdaInsightsToFunctions(globalLambdaInsights) {
+    if (typeof this.service.functions !== 'object') {
       return;
     }
 
@@ -53,15 +62,15 @@ class AddLambdaInsights {
       }
 
       const fnLambdaInsights =
-        localLambdaInsights === null
-          ? globalLambdaInsights
-          : this.checkLambdaInsightsType(localLambdaInsights);
+        localLambdaInsights === null ?
+          globalLambdaInsights :
+          this.checkLambdaInsightsType(localLambdaInsights);
 
       if (fnLambdaInsights) {
         // attach Lambda Layer
         fn.layers = fn.layers || [];
         fn.layers.push(
-          `arn:aws:lambda:${this.provider.getRegion()}:580247275435:layer:LambdaInsightsExtension:${layerVersion}`
+            `arn:aws:lambda:${this.provider.getRegion()}:580247275435:layer:LambdaInsightsExtension:${layerVersion}`,
         );
         policyToggle = true;
       }
@@ -71,16 +80,19 @@ class AddLambdaInsights {
       this.service.provider.iamManagedPolicies =
         this.service.provider.iamManagedPolicies || [];
       this.service.provider.iamManagedPolicies.push(
-        `arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy`
+          `arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy`,
       );
     }
   };
 
-  addLambdaInsights = () => {
+  /**
+   * Hook function to get global config value and executes addLambdaInsightsToFunctions
+   */
+  addLambdaInsights() {
     const globalLambdaInsights =
-      this.service.custom && this.service.custom.lambdaInsights
-        ? this.checkLambdaInsightsType(this.service.custom.lambdaInsights)
-        : null;
+      this.service.custom && this.service.custom.lambdaInsights ?
+        this.checkLambdaInsightsType(this.service.custom.lambdaInsights) :
+        null;
     this.addLambdaInsightsToFunctions(globalLambdaInsights);
   };
 }
