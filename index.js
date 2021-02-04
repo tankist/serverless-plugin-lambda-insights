@@ -1,5 +1,9 @@
 'use strict';
 
+
+const layerVersion = 14;
+
+
 /**
  * module description
  * @module AddLambdaInsights
@@ -36,6 +40,7 @@ class AddLambdaInsights {
       const resources = service.resources || {};
       resources.Resources = service.Resources || {};
 
+      let toggle = false;
       Object.keys(service.functions).forEach((functionName) => {
         const fn = service.functions[functionName];
         const localLambdaInsights = service.functions[functionName].lambdaInsights || null;
@@ -49,18 +54,17 @@ class AddLambdaInsights {
               this.checkLambdaInsightsType(localLambdaInsights);
 
         if (fnLambdaInsights) {
-          // attach LAyer to lambda
+          // attach layer to function
+          fn.layers = [...fn.layers,
+            `arn:aws:lambda:${this.provider.region}:580247275435:layer:LambdaInsightsExtension:${layerVersion}`];
+          toggle = true;
         }
-        // const logGroupLogicalId = this.provider.naming.getLogGroupLogicalId(functionName);
-
-        // const resource = {
-        //   Type: 'AWS::Logs::LogGroup',
-        //   Properties: {
-        //     RetentionInDays: functionLogRetentionInDays,
-        //   },
-        // };
-        // resources.Resources[logGroupLogicalId] = resource;
       });
+      if (toggle) {
+        // attach CloudWatchLambdaInsightsExecutionRolePolicy
+        this.provider.iamManagedPolicies = [...this.provider.iamManagedPolicies,
+          `arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy`];
+      }
     };
 
     addLambdaInsights = ()=>{
