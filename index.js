@@ -46,9 +46,6 @@ class AddLambdaInsights {
       return;
     }
 
-    const resources = this.service.resources || {};
-    resources.Resources = this.service.Resources || {};
-
     let policyToggle = false;
     Object.keys(this.service.functions).forEach((functionName) => {
       const fn = this.service.functions[functionName];
