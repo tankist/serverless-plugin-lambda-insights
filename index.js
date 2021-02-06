@@ -20,8 +20,20 @@ class AddLambdaInsights {
     this.provider = this.serverless.getProvider('aws');
 
     this.hooks = {
-      'package:createDeploymentArtifacts': this.addLambdaInsights.bind(this),
+      'before:package:setupProviderConfiguration': this.addLambdaInsights.bind(this),
     };
+
+    serverless.configSchemaHandler.defineFunctionProperties('aws', {
+      properties: {
+        lambdaInsights: {type: 'boolean'},
+      },
+    });
+
+    serverless.configSchemaHandler.defineCustomProperties({
+      properties: {
+        lambdaInsights: {type: 'boolean'},
+      },
+    });
   }
 
   /**
