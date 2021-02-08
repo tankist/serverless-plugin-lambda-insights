@@ -32,12 +32,17 @@ plugins:
   - serverless-plugin-lambda-insights
 
 functions:
-  mainFunction: # inherits tracing settings from "provider"
+  mainFunction: #inherits tracing settings from "provider"
     lambdaInsights: true #turns on Lambda Insights for this function
+    handler: src/app/index.handler
+  secondFunction: #inherits tracing settings from "provider"
+    lambdaInsights: false #turns off Lambda Insights for this function, will overrule custom settings
     handler: src/app/index.handler
  
 custom:
-  lambdaInsights: true # turn on Lambda Insights for all of your function
+  lambdaInsights: 
+    defaultLambdaInsights: true #turn on Lambda Insights for all your function, if 
+    lambdaInsightsVersion: 14 #specify the Layer Version
 ```
 ### Functionality
 
