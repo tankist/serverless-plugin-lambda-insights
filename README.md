@@ -44,6 +44,7 @@ functions:
 custom:
   lambdaInsights: 
     defaultLambdaInsights: true #turn on Lambda Insights for all your function, if 
+    attachPolicy: false #explicitly disable auto attachment Managed Policy. 
     lambdaInsightsVersion: 14 #specify the Layer Version
 ```
 ### Functionality

@@ -38,6 +38,7 @@ class AddLambdaInsights {
       properties: {
         lambdaInsights: {
           defaultLambdaInsights: {type: 'boolean'},
+          attachPolicy: {type: 'boolean'},
           lambdaInsightsVersion: {type: 'number'},
         },
       },
@@ -76,8 +77,9 @@ class AddLambdaInsights {
    * Attach Lambda Layer conditionally to each function
    * @param  {boolean} globalLambdaInsights global settings
    * @param  {number} layerVersion global layerVersion settings
+   * @param  {boolean} attachPolicy global attachPolicy settings
    */
-  addLambdaInsightsToFunctions(globalLambdaInsights, layerVersion) {
+  addLambdaInsightsToFunctions(globalLambdaInsights, layerVersion, attachPolicy) {
     if (typeof this.service.functions !== 'object') {
       return;
     }
@@ -110,7 +112,7 @@ class AddLambdaInsights {
         policyToggle = true;
       }
     });
-    if (policyToggle) {
+    if (attachPolicy && policyToggle) {
       // attach CloudWatchLambdaInsightsExecutionRolePolicy
       this.service.provider.iamManagedPolicies =
         this.service.provider.iamManagedPolicies || [];
@@ -132,6 +134,13 @@ class AddLambdaInsights {
         ) :
         null;
 
+    const attachPolicy =
+      customLambdaInsights && customLambdaInsights.attachPolicy ?
+        this.checkLambdaInsightsType(
+            customLambdaInsights.attachPolicy,
+        ) :
+        true;
+
     const layerVersion =
       customLambdaInsights && customLambdaInsights.lambdaInsightsVersion ?
         this.checkLambdaInsightsVersion(
@@ -139,7 +148,7 @@ class AddLambdaInsights {
         ) :
         null;
 
-    this.addLambdaInsightsToFunctions(globalLambdaInsights, layerVersion);
+    this.addLambdaInsightsToFunctions(globalLambdaInsights, layerVersion, attachPolicy);
   }
 }
 
