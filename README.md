@@ -8,6 +8,8 @@ A Serverless Framework Plugin allowing to enable Lambda Insights
 
 Enables AWS Lambda Insights (https://aws.amazon.com/blogs/mt/introducing-cloudwatch-lambda-insights/) for the entire Serverless stack or individual functions.
 
+## Why using Lambda Insights  
+
 > *CloudWatch Lambda Insights* is a monitoring and troubleshooting solution for serverless applications running on AWS Lambda. The solution collects, aggregates, and summarizes system-level metrics including CPU time, memory, disk, and network. It also collects, aggregates, and summarizes diagnostic information such as cold starts and Lambda worker shutdowns to help you isolate issues with your Lambda functions and resolve them quickly.
 
 ## Getting started
@@ -54,6 +56,10 @@ go to AWS Lambda -> select your Lambda function -> Configuration tab -> Monitori
 If `lambdaInsights` validated to `true` for a function,
 the checkbox will be checked.
 
-
+## Want to contribute?
+This is your repo - just go head and create a pull request ;)
+## Contact
+This is a project created and maintained by a private person. 
+In case you have any suggestions, questions or remarks, please raise an issue or reach out to @cstanger.
 ## License
 [MIT](LICENSE)
