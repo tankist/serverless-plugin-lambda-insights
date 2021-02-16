@@ -65,4 +65,4 @@ This is your repo - just go head and create a pull request ;)
 This is a project created and maintained by a private person. 
 In case you have any suggestions, questions or remarks, please raise an issue or reach out to @cstanger.
 ## License
-[MIT](LICENSE)
+This is a private project by private person, published under the [MIT](LICENSE) licence. 
