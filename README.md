@@ -12,6 +12,8 @@ Enables AWS Lambda Insights (https://aws.amazon.com/blogs/mt/introducing-cloudwa
 
 > *CloudWatch Lambda Insights* is a monitoring and troubleshooting solution for serverless applications running on AWS Lambda. The solution collects, aggregates, and summarizes system-level metrics including CPU time, memory, disk, and network. It also collects, aggregates, and summarizes diagnostic information such as cold starts and Lambda worker shutdowns to help you isolate issues with your Lambda functions and resolve them quickly.
 
+![AWS Documentation Example](https://docs.aws.amazon.com/lambda/latest/dg/images/lambdainsights-multifunction-view.png)
+
 ## Getting started
 
 ### Installation
