@@ -59,6 +59,14 @@ go to AWS Lambda -> select your Lambda function -> Configuration tab -> Monitori
 If `lambdaInsights` validated to `true` for a function,
 the checkbox will be checked.
 
+
+### Example
+You can find an example in the example folder of this repository. Run it with the following comment.
+
+`cd example; serverless deploy`
+
+This will deploy a hallo-world Lambda function with Lambda Insights enables. 
+
 ## Want to contribute?
 This is your repo - just go head and create a pull request ;)
 ## Contact
