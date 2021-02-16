@@ -14,10 +14,8 @@ Enables AWS Lambda Insights (https://aws.amazon.com/blogs/mt/introducing-cloudwa
 
 ![AWS Documentation Example](https://docs.aws.amazon.com/lambda/latest/dg/images/lambdainsights-multifunction-view.png)
 
-
-## Getting started
 --------------- 
-
+## Getting started
 ### Installation
 `npm install --save-dev serverless-plugin-lambda-insights`
 
@@ -69,8 +67,8 @@ You can find an example in the example folder of this repository. Run it with th
 
 This will deploy a hallo-world Lambda function with Lambda Insights enables. 
 
-## Want to contribute?
 --------------
+## Want to contribute?
 This is your repo - just go head and create a pull request ;)
 
 Some open Ideas and Tasks:
