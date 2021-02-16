@@ -21,6 +21,30 @@ Enables AWS Lambda Insights (https://aws.amazon.com/blogs/mt/introducing-cloudwa
 
 add Plugin to your `serverless.yml` in the plugins section.
 
+### Minimal Usage 
+Example `serverless.yml`:
+
+```yaml
+provider:
+  name: aws
+
+plugins:
+  - serverless-plugin-lambda-insights
+
+functions:
+  hello:
+    handler: handler.hello
+    lambdaInsights: true
+```
+### Functionality
+
+The plugin will enable Lambda Insights by adding a Lambda Layer ([see Layer Details and Versions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html)) and adding necessary permissions using the `arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy` as a AWS IAM Managed Policy. 
+
+ You can check in your AWS Console:
+go to AWS Lambda -> select your Lambda function -> Configuration tab -> Monitoring tools ->
+"CloudWatch Lambda Insights". 
+If `lambdaInsights` validated to `true` for a function,
+the checkbox will be checked.
 
 ### Usage 
 Example `serverless.yml`:
@@ -49,17 +73,6 @@ custom:
     attachPolicy: false #explicitly disable auto attachment Managed Policy. 
     lambdaInsightsVersion: 14 #specify the Layer Version
 ```
-### Functionality
-
-The plugin will enable Lambda Insights by adding a Lambda Layer ([see Layer Details and Versions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html)) and adding necessary permissions using the `arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy` as a AWS IAM Managed Policy. 
-
- You can check in your AWS Console:
-go to AWS Lambda -> select your Lambda function -> Configuration tab -> Monitoring tools ->
-"CloudWatch Lambda Insights". 
-If `lambdaInsights` validated to `true` for a function,
-the checkbox will be checked.
-
-
 ### Example
 You can find an example in the example folder of this repository. Run it with the following comment.
 
