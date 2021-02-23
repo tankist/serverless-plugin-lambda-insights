@@ -1,10 +1,9 @@
 {
   "name": "serverless-plugin-lambda-insights",
-  "version": "0.0.1",
+  "version": "1.0",
   "description": "A Serverless Framework Plugin allowing to enable Lambda Insights for entire Serverless stack or individual functions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint"
   },
   "repository": {

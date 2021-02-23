@@ -2,9 +2,10 @@
 A Serverless Framework Plugin allowing to enable Lambda Insights
 
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
-<!-- [![npm version](https://badge.fury.io/js/serverless-plugin-tracing.svg)](https://badge.fury.io/js/serverless-plugin-tracing) -->
-<!-- [![CircleCI](https://circleci.com/gh/alex-murashkin/serverless-plugin-tracing.svg?style=shield)](https://circleci.com/gh/alex-murashkin/serverless-plugin-tracing) -->
-<!-- [![Coverage Status](https://coveralls.io/repos/github/AlexanderMS/serverless-plugin-tracing/badge.svg)](https://coveralls.io/github/alex-murashkin/serverless-plugin-tracing) -->
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cstanger/serverless-plugin-lambda-insights/Node.js%20Package)
+![npm](https://img.shields.io/npm/v/serverless-plugin-lambda-insights)
+![npm](https://img.shields.io/npm/dw/serverless-plugin-lambda-insights)
+
 
 Enables AWS Lambda Insights (https://aws.amazon.com/blogs/mt/introducing-cloudwatch-lambda-insights/) for the entire Serverless stack or individual functions.
 
