@@ -128,7 +128,7 @@ class AddLambdaInsights {
       this.service.custom && this.service.custom.lambdaInsights;
 
     const globalLambdaInsights =
-      customLambdaInsights && customLambdaInsights.lambdaInsights ?
+      customLambdaInsights && customLambdaInsights.defaultLambdaInsights ?
         this.checkLambdaInsightsType(
             customLambdaInsights.defaultLambdaInsights,
         ) :
